@@ -1,1 +1,6 @@
 # employee-review-analysis
+Current analytical methods, such as topic modeling, sentiment analysis, and deep emotion analysis, often provide limited insights. These approaches tend to focus primarily on stakeholder interests, interpreting texts based on their direct or literal meanings rather than exploring the underlying implicit perceptions and perspectives of employees.
+
+To enhance the human-like sense-making capabilities within traditional computational text analysis, we propose an innovative analytical approach that integrates deep text analysis theory—specifically discourse analysis—with Natural Language Processing (NLP) and generative AI. This novel methodology not only captures the sentiments expressed in text but also delves deeper to uncover the emotional nuances, contextual relationships, power dynamics experienced by employees, and the personalities reflected in various situations.
+
+Additionally, we utilize Growing Self-Organizing Maps (GSOM) to examine each of these dimensions at a granular level, allowing the analysis to adapt and grow, thereby representing the data more comprehensively. This combined approach aims to reveal hidden insights and enrich our understanding of employee perceptions.
