@@ -57,7 +57,7 @@ df_all["data-title"]=df["ID"].values
 """***Visualization***"""
 
 map_points = gsom_map.predict(df_all,"uid","data-title")
-gsom.plot(map_points, "data-title", gsom_map=gsom_map, figure_label='IB_Analysis', file_name='IB_Analysis')
+gsom.plot(map_points, "data-title", gsom_map=gsom_map, figure_label='IB_Analysis', file_name='IB_Analysis',show_index=False,cmap_colors="Paired")
 map_points.to_csv("GSOM_IB.csv", index=False)
 
 """***Mapping GSOM points to IDs***"""
@@ -89,41 +89,3 @@ output_df.to_csv('mappoint_id_mapping.csv', index=False)
 df_weights = pd.DataFrame(gsom_map.node_list)
 df_weights.head()
 
-"""***Clustering GSOM map points using KMeans and visualizing results***"""
-
-#get the relavant weight for each data row. This will be the input for kmeans
-
-from sklearn.cluster import KMeans
-
-df_merge = map_points[['uid', 'output', 'x', 'y']].merge(df_weights, left_on='output', right_index=True)
-
-#number of clusters for kmeans
-number_of_clusters =1
-
-kmean = KMeans(n_clusters=number_of_clusters, random_state=42)
-df_train= df_merge.drop(['uid', 'output', 'x', 'y'], axis=1)
-df_merge['cluster'] = kmean.fit_predict(df_train)
-
-#df_merge.head()
-df_merge.head()
-
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-plt.figure()
-
-color_array = ['#A9A9A9']
-
-for n in range(0, number_of_clusters):
-    label_n = df_merge[df_merge['cluster'] == n]
-    plt.scatter(label_n['x'] , label_n['y'], color = color_array[n])
-
-plt.show()
-
-"""***Viewing predicted map points with weights***"""
-
-df_merge.head()
-
-"""***Saving to CSV file***"""
-
-df_merge.to_csv('kmeans_clustering_results.csv', index=False)
